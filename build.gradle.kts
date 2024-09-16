@@ -22,9 +22,10 @@ dependencies {
     implementation(kotlin("reflect"))
 
     testImplementation(kotlin("test"))
+    testImplementation ("io.kotest:kotest-assertions-core:5.9.1")
 }
 
-tasks.test {
+tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 kotlin {
