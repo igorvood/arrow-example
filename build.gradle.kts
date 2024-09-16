@@ -11,12 +11,13 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("io.arrow-kt:arrow-stack:1.2.4"))
+    val arrowVersion = "1.2.4"
+    implementation(platform("io.arrow-kt:arrow-stack:$arrowVersion"))
     implementation("io.arrow-kt:arrow-core")
     implementation("io.arrow-kt:arrow-fx-coroutines")
     implementation("io.arrow-kt:arrow-optics")
     implementation("io.arrow-kt:arrow-optics-reflect")
-    ksp("io.arrow-kt:arrow-optics-ksp-plugin")
+    ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
 
