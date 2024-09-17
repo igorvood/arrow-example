@@ -2,15 +2,10 @@ package ru.vood.arrow.example.ru.vood.arrow.schedule
 
 import arrow.resilience.Schedule
 import arrow.resilience.retry
-import arrow.resilience.retryRaise
 import kotlinx.coroutines.runBlocking
-import org.jetbrains.annotations.Async
-import java.time.LocalDate
 import java.time.LocalDateTime
 import kotlin.math.abs
-import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.DurationUnit
 
 fun convert(): LocalDateTime {
     val now = LocalDateTime.now()

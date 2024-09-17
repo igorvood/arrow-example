@@ -21,9 +21,9 @@ data class Author private constructor(val name: String) {
 }
 
 sealed interface BookValidationError
-object EmptyTitle: BookValidationError
-object NoAuthors: BookValidationError
-data class EmptyAuthor(val index: Int): BookValidationError
+object EmptyTitle : BookValidationError
+object NoAuthors : BookValidationError
+data class EmptyAuthor(val index: Int) : BookValidationError
 
 data class Book private constructor(
     val title: String, val authors: NonEmptyList<Author>
