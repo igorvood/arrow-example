@@ -17,7 +17,7 @@ fun convert(): LocalDateTime {
     return if ((abs(now.hashCode()) % 2) == 0) {
         now
     } else {
-        val message = "Вай-вай не получилось  "+now
+        val message = "Вай-вай не получилось  " + now
         println(message)
         throw RuntimeException(message)
     }
