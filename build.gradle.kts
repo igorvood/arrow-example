@@ -29,5 +29,5 @@ tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(17)
 }
