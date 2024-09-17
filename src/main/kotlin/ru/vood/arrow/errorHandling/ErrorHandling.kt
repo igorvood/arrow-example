@@ -19,6 +19,7 @@ data object InsufficientFunds : PaymentError
 
 fun Raise<UserExists>.insertUser(userName: String): User =
     raise(UserExists(userName))
+//User
 
 context(Raise<UserExists>)
 fun insertUserContext(userName: String): User =
