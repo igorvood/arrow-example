@@ -2,17 +2,20 @@ package ru.vood.arrow.example.ru.vood.arrow.errorHandling
 
 import arrow.core.raise.Raise
 import arrow.core.raise.recover
+import kotlinx.coroutines.runBlocking
 
 object User
 
-sealed interface UserError
-data class UserExists(val userName: String): UserError
+sealed interface UserRegistrationError
+
+sealed interface UserError : UserRegistrationError
+data class UserExists(val userName: String) : UserError
 data object UserNameMissing : UserError
 
 
-sealed interface PaymentError
-data object ExpiredCard: PaymentError
-data object InsufficientFunds: PaymentError
+sealed interface PaymentError : UserRegistrationError
+data object ExpiredCard : PaymentError
+data object InsufficientFunds : PaymentError
 
 fun Raise<UserExists>.insertUser(userName: String): User =
     raise(UserExists(userName))
@@ -20,6 +23,11 @@ fun Raise<UserExists>.insertUser(userName: String): User =
 context(Raise<UserExists>)
 fun insertUserContext(userName: String): User =
     raise(UserExists(userName))
+
+context(Raise<UserNameMissing>)
+fun HttpRequest.userName(): String =
+    raise(UserNameMissing)
+
 
 context(Raise<PaymentError>)
 fun User.receivePayment(): Int {
@@ -33,24 +41,45 @@ fun User.receivePayment(): Int {
     return 18
 }
 
+object HttpRequest
 
+enum class HttpResponse {
+    CREATED
+}
+
+context(Raise<UserExists>, Raise<PaymentError>)
+suspend fun Raise<UserRegistrationError>.route(request: HttpRequest): HttpResponse {
+    val userName = request.userName()
+    val user = insertUser(userName)
+    user.receivePayment()
+    return HttpResponse.CREATED
+}
 
 
 fun main() {
+    println("=======insertUser=====================")
     val recover = recover({ insertUser("Классический Рейз") }) { qw ->
         println("""а пользователь то "${qw.userName}" не существует""")
-        null }
+        null
+    }
 
     recover({ insertUserContext("Рейз изконтекста") }) { qw ->
         println("""а пользователь то "${qw.userName}" не существует""")
-        null }
-    println("============================")
+        null
+    }
+    println("============receivePayment================")
     val user = User
-    val recover1 = recover({ user.receivePayment() }) {
+    val receivePayment = recover({ user.receivePayment() }) {
         println("платеж не прошел по причине ${it.javaClass.name}")
         null
     }
-    println(recover1)
-    println("============================")
+    println(receivePayment)
+    println("===========route=================")
+
+    runBlocking {
+        recover({ route(HttpRequest) }) {
+            println("цепочка создание пользователя, регисстрация его и проведение платежа по причине ${it.javaClass.name}")
+        }
+    }
 
 }
