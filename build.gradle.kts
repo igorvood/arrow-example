@@ -13,7 +13,9 @@ repositories {
 }
 
 dependencies {
-    val arrowVersion = "1.2.4"
+//    val arrowVersion = "1.2.4"
+    val arrowVersion = "2.0.0-alpha.3"
+
     implementation(platform("io.arrow-kt:arrow-stack:$arrowVersion"))
     implementation("io.arrow-kt:arrow-core")
     implementation("io.arrow-kt:arrow-fx-coroutines")
