@@ -21,6 +21,7 @@ dependencies {
     implementation("io.arrow-kt:arrow-fx-coroutines")
     implementation("io.arrow-kt:arrow-optics")
     implementation("io.arrow-kt:arrow-optics-reflect")
+    implementation("io.arrow-kt:arrow-resilience")
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:$arrowVersion")
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
