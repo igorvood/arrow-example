@@ -54,7 +54,7 @@ fun bodyValidate(body: String?): Either<BodyError, ParsedBodyToDto> = either {
     ParsedBodyToDto(body)
 }
 
-data class ParsedHttpRequest(val h1: Header1Val, val h2: Header2Val)
+data class ParsedHttpRequest(val h1: Header1Val, val h2: Header2Val, val dto: ParsedBodyToDto)
 
 fun httpRequestValidate(
     httpRequest: MyHttpRequest
@@ -64,7 +64,7 @@ fun httpRequestValidate(
         { header2Validate(httpRequest.headers).bind() },
         { bodyValidate(httpRequest.body).bind() },
     ) { h1, h2, dto ->
-        ParsedHttpRequest(h1, h2)
+        ParsedHttpRequest(h1, h2, dto)
     }
 }
 
