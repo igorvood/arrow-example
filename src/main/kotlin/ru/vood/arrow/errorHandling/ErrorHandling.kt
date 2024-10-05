@@ -1,10 +1,11 @@
 package ru.vood.arrow.example.ru.vood.arrow.errorHandling
 
 import arrow.core.raise.Raise
+import arrow.core.raise.ensure
 import arrow.core.raise.recover
 import kotlinx.coroutines.runBlocking
 
-object User
+data class User(val userName: String)
 
 sealed interface UserRegistrationError
 
@@ -17,17 +18,21 @@ sealed interface PaymentError : UserRegistrationError
 data object ExpiredCard : PaymentError
 data object InsufficientFunds : PaymentError
 
-fun Raise<UserExists>.insertUser(userName: String): User =
-    raise(UserExists(userName))
-//User
+fun Raise<UserExists>.insertUser(userName: String): User {
+    println("""Создаю пользователя "$userName""")
+    ensure(userName.isNotEmpty()) { UserExists(userName) }
+    return User(userName)
+}//User
 
 context(Raise<UserExists>)
 fun insertUserContext(userName: String): User =
     raise(UserExists(userName))
 
 context(Raise<UserNameMissing>)
-fun HttpRequest.userName(): String =
-    raise(UserNameMissing)
+fun HttpRequest.userName(): String {
+//    raise(UserNameMissing)
+    return "Тетушка медоуз с дочками"
+}
 
 
 context(Raise<PaymentError>)
@@ -35,7 +40,7 @@ fun User.receivePayment(): Int {
     println("Пыжусь провести платеж")
 
 //    raise(ExpiredCard)
-    raise(InsufficientFunds)
+//    raise(InsufficientFunds)
 
     println("А платеж то прошел")
 
@@ -69,7 +74,7 @@ fun main() {
         null
     }
     println("============receivePayment================")
-    val user = User
+    val user = User("asd")
     val receivePayment = recover({ user.receivePayment() }) {
         println("платеж не прошел по причине ${it.javaClass.name}")
         null
