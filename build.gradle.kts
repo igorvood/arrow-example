@@ -27,7 +27,7 @@ dependencies {
     implementation(kotlin("reflect"))
 
     testImplementation(kotlin("test"))
-    testImplementation ("io.kotest:kotest-assertions-core:5.9.1")
+    implementation ("io.kotest:kotest-assertions-core:5.9.1")
 }
 
 tasks.withType<Test>().configureEach {
