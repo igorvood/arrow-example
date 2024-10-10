@@ -44,7 +44,7 @@ fun main() {
     val person = Person("PersonName", 45)
 
     println("===============modify only person==================")
-    println(SomeAbstraction.person.name.modify(company, String::uppercase))
+    println(SomeAbstraction.person.name.modify(company) { it.uppercase() })
     println(SomeAbstraction.person.name.modify(person, String::uppercase))
     println("===============modify any type==================")
     println(SomeAbstraction.name.modify(company, String::uppercase))
