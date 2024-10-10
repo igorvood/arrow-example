@@ -1,6 +1,7 @@
 package ru.vood.arrow.example.ru.vood.arrow.prisms
 
 import arrow.core.Either
+import arrow.optics.PTraversal
 import arrow.optics.Prism
 import arrow.optics.optics
 import io.kotest.matchers.shouldBe
@@ -43,17 +44,22 @@ fun main() {
     val person = Person("PersonName", 45)
 
     println("===============modify only person==================")
-    println(SomeAbstraction.person.name.modify(company, { "Тетушка медоуз с дочками" }))
-    println(SomeAbstraction.person.name.modify(person, { "Тетушка медоуз с дочками" }))
+    println(SomeAbstraction.person.name.modify(company, String::uppercase))
+    println(SomeAbstraction.person.name.modify(person, String::uppercase))
     println("===============modify any type==================")
-    println(SomeAbstraction.name.modify(company, { "Тетушка медоуз с дочками" }))
-    println(SomeAbstraction.name.modify(person, { "Тетушка медоуз с дочками" }))
+    println(SomeAbstraction.name.modify(company, String::uppercase))
+    println(SomeAbstraction.name.modify(person, String::uppercase))
     println("===============getAll==================")
     println(SomeAbstraction.person.age.getAll(company))
     println(SomeAbstraction.person.age.getAll(person))
     println("===============getOrNull==================")
     println(SomeAbstraction.person.age.getOrNull(company))
     println(SomeAbstraction.person.age.getOrNull(person))
+
+    println("===============choice==================")
+//    val message = SomeAbstraction.person.age.choice(P)
+//    println(message)
+
 
 
 }
