@@ -12,7 +12,7 @@ import ru.vood.arrow.example.ru.vood.arrow.errorHandling.*
 context(Raise<UserExists>)
 suspend fun SagaScope.insertOrRollBack(userName: String): User {
     val saga = saga({ insertUser(userName) }) { user ->
-        println("""удаляю пользователя "$userName""")
+        println("""удаляю пользователя "$userName" """)
     }
     return saga
 }
@@ -24,6 +24,7 @@ suspend fun route2(request: HttpRequest): HttpResponse {
     saga {
 
         val user = insertOrRollBack(name)
+        val user2 = insertOrRollBack("Получатель платежа от Тетушки")
         user.receivePayment()
 //        raise(ExpiredCard)
     }.transact()

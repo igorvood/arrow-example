@@ -19,7 +19,7 @@ data object ExpiredCard : PaymentError
 data object InsufficientFunds : PaymentError
 
 fun Raise<UserExists>.insertUser(userName: String): User {
-    println("""Создаю пользователя "$userName""")
+    println("""Создаю пользователя "$userName" """)
     ensure(userName.isNotEmpty()) { UserExists(userName) }
     return User(userName)
 }//User
