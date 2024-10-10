@@ -9,7 +9,7 @@ import kotlinx.coroutines.runBlocking
 import ru.vood.arrow.example.ru.vood.arrow.errorHandling.*
 
 
-context(Raise<UserExists>)
+context(Raise<UserNameMissing>)
 suspend fun SagaScope.insertOrRollBack(userName: String): User {
     val saga = saga({ insertUser(userName) }) { user ->
         println("""удаляю пользователя "$userName" """)

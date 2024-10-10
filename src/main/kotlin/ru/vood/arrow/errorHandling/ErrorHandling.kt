@@ -18,9 +18,9 @@ sealed interface PaymentError : UserRegistrationError
 data object ExpiredCard : PaymentError
 data object InsufficientFunds : PaymentError
 
-fun Raise<UserExists>.insertUser(userName: String): User {
+fun Raise<UserNameMissing>.insertUser(userName: String): User {
     println("""Создаю пользователя "$userName" """)
-    ensure(userName.isNotEmpty()) { UserExists(userName) }
+    ensure(userName.isNotEmpty()) { UserNameMissing }
     return User(userName)
 }//User
 
@@ -65,7 +65,7 @@ suspend fun Raise<UserRegistrationError>.route(request: HttpRequest): HttpRespon
 fun main() {
     println("=======insertUser=====================")
     val recover = recover({ insertUser("Классический Рейз") }) { qw ->
-        println("""а пользователь то "${qw.userName}" не существует""")
+        println("""а пользователь то "${qw}" не существует""")
         null
     }
 
