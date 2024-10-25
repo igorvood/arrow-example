@@ -1,4 +1,4 @@
-package ru.vood.arrow.example.ru.vood.arrow.schedule
+package ru.vood.arrow._04_schedule
 
 import arrow.resilience.Schedule
 import arrow.resilience.retry

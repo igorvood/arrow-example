@@ -1,4 +1,4 @@
-package ru.vood.arrow.example.ru.vood.arrow.circuitBreaker
+package ru.vood.arrow._05_circuitBreaker
 
 import arrow.core.Either
 import arrow.resilience.CircuitBreaker

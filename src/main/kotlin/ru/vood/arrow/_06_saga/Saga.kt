@@ -1,4 +1,4 @@
-package ru.vood.arrow.example.ru.vood.arrow.saga
+package ru.vood.arrow._06_saga
 
 import arrow.core.raise.Raise
 import arrow.core.raise.recover

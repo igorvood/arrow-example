@@ -1,4 +1,4 @@
-package ru.vood.arrow.example.ru.vood.arrow.validation.httpRequest
+package ru.vood.arrow._07_validation.httpRequest
 
 import arrow.core.Either
 import arrow.core.NonEmptyList

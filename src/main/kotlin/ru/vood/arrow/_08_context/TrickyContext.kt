@@ -1,4 +1,4 @@
-package ru.vood.arrow.example.ru.vood.arrow.context
+package ru.vood.arrow._08_context
 
 import java.util.*
 
