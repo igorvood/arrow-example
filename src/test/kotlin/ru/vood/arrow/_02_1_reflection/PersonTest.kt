@@ -1,4 +1,4 @@
-package ru.vood.arrow.reflection
+package ru.vood.arrow._02_1_reflection
 
 import arrow.core.merge
 import arrow.fx.coroutines.parZip
@@ -8,8 +8,6 @@ import arrow.optics.instance
 import arrow.optics.lens
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-
-import ru.vood.arrow.example.ru.vood.arrow.reflection.Person
 
 class PersonTest {
 

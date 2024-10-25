@@ -1,6 +1,5 @@
-package ru.vood.arrow.validation
+package ru.vood.arrow._07_validation
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*

@@ -1,4 +1,4 @@
-package ru.vood.arrow.example.ru.vood.arrow.autoClose
+package ru.vood.arrow._01_autoClose
 
 import arrow.autoCloseScope
 
