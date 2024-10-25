@@ -2,7 +2,7 @@ package ru.vood.arrow.lenses
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import ru.vood.arrow.example.ru.vood.arrow.lenses.*
+import ru.vood.arrow.example.ru.vood.arrow._02_lenses.*
 
 class PersonTest {
 

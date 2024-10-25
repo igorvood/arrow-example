@@ -1,4 +1,4 @@
-package ru.vood.arrow.example.ru.vood.arrow.lenses
+package ru.vood.arrow.example.ru.vood.arrow._02_lenses
 
 import arrow.optics.optics
 
